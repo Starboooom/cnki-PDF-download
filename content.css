@@ -1,0 +1,351 @@
+/* ========== 摘要悬停提示 ========== */
+.cnki-abstract-tooltip {
+  position: fixed;
+  max-width: 450px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 2px solid #73976a;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(115, 151, 106, 0.2);
+  z-index: 9999;
+  display: none;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ========== 单篇下载按钮 ========== */
+.pdf-download-btn {
+  margin-right: 6px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+  vertical-align: middle;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  height: 24px;
+  width: 44px;
+  min-width: 44px;
+  line-height: 1;
+}
+
+.pdf-download-btn:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.pdf-download-btn:active {
+  transform: translateY(0);
+}
+
+.pdf-download-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ========== 批量下载按钮 ========== */
+.download-all-btn {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.download-all-btn:hover {
+  background-color: #0056b3;
+}
+
+.download-all-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* ========== 行选择复选框 ========== */
+.cnki-row-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #007bff;
+  flex-shrink: 0;
+}
+
+/* ========== 批量下载遮罩层 ========== */
+.batch-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 9999;
+  transition: background 0.3s;
+}
+
+.batch-backdrop.hidden {
+  pointer-events: none;
+}
+
+/* ========== 批量下载面板 ========== */
+.batch-panel {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 450px;
+  max-height: 550px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
+}
+
+.batch-panel.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.batch-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #007bff;
+  color: white;
+  font-weight: 600;
+}
+
+.batch-panel-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.batch-panel-close:hover {
+  opacity: 0.8;
+}
+
+.batch-panel-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+}
+
+.batch-panel-controls label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.batch-panel-controls .batch-btn {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.batch-btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.batch-btn-primary:hover {
+  background: #0056b3;
+}
+
+.batch-btn-primary:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.batch-btn-warning {
+  background: #ffc107;
+  color: #333;
+}
+
+.batch-btn-warning:hover {
+  background: #e0a800;
+}
+
+.batch-btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.batch-btn-danger:hover {
+  background: #c82333;
+}
+
+.batch-btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.batch-btn-secondary:hover {
+  background: #5a6268;
+}
+
+.batch-progress-bar {
+  height: 4px;
+  background: #e9ecef;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.batch-progress-fill {
+  height: 100%;
+  background: #007bff;
+  transition: width 0.3s;
+  border-radius: 2px;
+}
+
+.batch-progress-fill.paused {
+  background: #ffc107;
+}
+
+.batch-progress-fill.error {
+  background: #dc3545;
+}
+
+.batch-panel-stats {
+  padding: 6px 16px;
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+
+.batch-item-list {
+  overflow-y: auto;
+  max-height: 260px;
+  padding: 4px 0;
+}
+
+.batch-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 10px;
+  font-size: 13px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.batch-item:hover {
+  background: #f8f9fa;
+}
+
+.batch-item-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #007bff;
+  flex-shrink: 0;
+}
+
+.batch-item-num {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.batch-item-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.batch-item-status {
+  flex-shrink: 0;
+  font-size: 12px;
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.batch-item-status.pending {
+  color: #6c757d;
+  background: #f8f9fa;
+}
+
+.batch-item-status.downloading {
+  color: #007bff;
+  background: #e7f1ff;
+}
+
+.batch-item-status.success {
+  color: #28a745;
+  background: #e8f5e9;
+}
+
+.batch-item-status.failed {
+  color: #dc3545;
+  background: #fce4ec;
+}
+
+.batch-item-status.captcha {
+  color: #e65100;
+  background: #fff3e0;
+}
+
+/* 延迟设置 */
+.batch-delay-control {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #666;
+  margin-left: auto;
+}
+
+.batch-delay-control input {
+  width: 50px;
+  padding: 2px 4px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 12px;
+}
